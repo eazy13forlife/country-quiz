@@ -1,0 +1,25 @@
+1. I need to create a country quiz. Let's make it 20 questions.
+10 a city is the capital of...
+10 a flag belong to country....
+
+2.I want to randomize it each time a user logs on, so they get diff set of 20 questions
+//so whenever app loads, i will get 20 random questions
+
+//if i didn't want to randomize it, i would select questions in advance. So whenever app loads, I will get the same 20 questions.
+1. I need a questions reducer. An array that holds all of my question objects. contains name, city, flag and answer choices.
+2.Questions missed reducer. An array of objects. Each object contains question missed and the correct answer
+2b.I need to reset missed questions when i start a new game
+3.number of Questions currently missed needs to be kept for each game. after each game, i print the missed questions for that game, but they don't carry on for the next game.
+4.Maybe each component has a isCorrect state and if its true, it moves on to next question,otherwise stays on current question
+
+3. I need a question object that has question and 4 different answer solutions so that I can map and create a question card component for each question
+
+
+//components needed
+1.One question card component
+2.an answer choice component
+
+//fonts
+poppins
+500
+700
