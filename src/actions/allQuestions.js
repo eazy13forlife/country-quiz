@@ -10,7 +10,7 @@ const retrieveAllQuestions = () => {
       "https://restcountries.eu/rest/v2/all"
     );
     const questions = [];
-    createQuestionsArray(questions, allCountries.data, 30);
+    createQuestionsArray(questions, allCountries.data, 20);
 
     dispatch({
       type: types.RETRIEVE_ALL_QUESTIONS,
@@ -111,4 +111,4 @@ const addAnswerChoices = (result, data, quantity) => {
   }
 };
 */
-export { retrieveAllQuestions, getRandomIndex };
+export { retrieveAllQuestions };

@@ -25,3 +25,12 @@ REDUCERS
 poppins
 500
 700
+
+//the game itself
+How do i make it the most interactive it can be
+.I have current question.
+//if what i selected doesnt match up with the answer, i can try again.
+//the next button remains greyed out until i get question right
+//current question object with the question,the correct answer, my answer,
+number of attempts.
+//if i select wrong answer, then the key I clicked turns red and i can try again

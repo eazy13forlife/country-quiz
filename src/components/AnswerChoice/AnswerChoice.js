@@ -8,3 +8,5 @@ const AnswerChoice = ({ answerChoice, letter }) => {
     </div>
   );
 };
+
+export default AnswerChoice;
