@@ -2,21 +2,23 @@
 10 a city is the capital of...
 10 a flag belong to country....
 
-2.I want to randomize it each time a user logs on, so they get diff set of 20 questions
-//so whenever app loads, i will get 20 random questions
+2.I want to randomize it each time a user plays a game, so they get diff set of 20 questions
+//so whenever app loads, i will get 20 random questions or whenever game restarts
 
-//if i didn't want to randomize it, i would select questions in advance. So whenever app loads, I will get the same 20 questions.
-1. I need a questions reducer. An array that holds all of my question objects. contains name, city, flag and answer choices.
+//if i didn't want to randomize it, i would select questions in advance. So whenever app loads, I will get the same 20 questions and answer choices for each question.
+
+REDUCERS
+1. I need a questions reducer. An array that holds all of my question objects. contains name, city, flag and answer choices, so i can map them.
 2.Questions missed reducer. An array of objects. Each object contains question missed and the correct answer
-2b.I need to reset missed questions when i start a new game
-3.number of Questions currently missed needs to be kept for each game. after each game, i print the missed questions for that game, but they don't carry on for the next game.
-4.Maybe each component has a isCorrect state and if its true, it moves on to next question,otherwise stays on current question
+3.I need to reset missed questions when i start a new game
+4.number of Questions currently missed needs to be kept for each game. after each game, i print the number of missed questions for that game, but they don't carry on for the next game.But i dont need a reducer for this. I can just find the length of missedQuestions reducer
+5.i need a copy of the questions array. First thing is get a random question from the questions array and its index from useSelector(store it as the variable currentQuestion). If its even, the question will be so and so is the capital of. if its odd, it will be this flag is for so and so. If person gets it right, i will need to delete this question from this copy of questions array using an (ACTION CREATOR). Once its deleted, useSelector will detect this and get a new question and index.Otherwise, if person gets it wrong, the same question will appear. Since useSelector will run for every store change, it will return a random question each time, so i need to put all of this in a memoized selector that only runs when the copy of the questions array changes, meaning i have deleted something in there.
 
 3. I need a question object that has question and 4 different answer solutions so that I can map and create a question card component for each question
 
 
 //components needed
-1.One question card component
+1.One question card component. it will just render different content based on whether user got current question right
 2.an answer choice component
 
 //fonts

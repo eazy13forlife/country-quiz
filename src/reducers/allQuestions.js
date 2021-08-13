@@ -1,12 +1,12 @@
 import types from "../actions/types";
 
-const questionsReducer = (state = [], action) => {
+const questionsListReducer = (state = [], action) => {
   switch (action.type) {
-    case types.RETRIEVE_QUESTIONS:
+    case types.RETRIEVE_ALL_QUESTIONS:
       return action.payload;
     default:
       return state;
   }
 };
 
-export default questionsReducer;
+export default questionsListReducer;

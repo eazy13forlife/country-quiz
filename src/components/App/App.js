@@ -1,6 +1,6 @@
 import React from "react";
 
-import { retrieveQuestions } from "../../actions/questions";
+import { retrieveAllQuestions } from "../../actions/allQuestions";
 
 const App = () => {
   return <p>hey</p>;

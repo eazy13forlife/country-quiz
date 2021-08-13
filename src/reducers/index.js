@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 
-import questionsReducer from "./questionsReducer";
+import allQuestionsReducer from "./allQuestions";
 import missedQuestionsReducer from "./missedQuestionsReducer";
+import remainingQuestionsReducer from "./remainingQuestionsReducer";
 
 export default combineReducers({
-  questions: questionsReducer,
+  allQuestions: allQuestionsReducer,
   missedQuestions: missedQuestionsReducer,
+  remainingQuestions: remainingQuestionsReducer,
 });
