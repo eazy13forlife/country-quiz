@@ -1,7 +1,13 @@
 import { retrieveAllQuestions } from "./allQuestions";
 import { addToMissedQuestions, resetMissedQuestions } from "./missedQuestions";
 import { removeQuestion } from "./remainingQuestions";
-import { getNextQuestion } from "./currentQuestion";
+import {
+  getNextQuestion,
+  markCorrect,
+  markWrong,
+  provideAnswer,
+} from "./currentQuestion";
+import { addToQuestionsHistory } from "./questionsHistory";
 
 export {
   retrieveAllQuestions,
@@ -9,4 +15,8 @@ export {
   resetMissedQuestions,
   removeQuestion,
   getNextQuestion,
+  addToQuestionsHistory,
+  markCorrect,
+  markWrong,
+  provideAnswer,
 };

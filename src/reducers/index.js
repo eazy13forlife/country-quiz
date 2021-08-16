@@ -5,10 +5,12 @@ import allQuestionsReducer from "./allQuestions";
 import missedQuestionsReducer from "./missedQuestionsReducer";
 import remainingQuestionsReducer from "./remainingQuestionsReducer";
 import currentQuestionReducer from "./currentQuestionReducer";
+import questionsHistoryReducer from "./questionsHistoryReducer";
 
 export default combineReducers({
   allQuestions: allQuestionsReducer,
   missedQuestions: missedQuestionsReducer,
   remainingQuestions: remainingQuestionsReducer,
   currentQuestion: currentQuestionReducer,
+  questionsHistory: questionsHistoryReducer,
 });

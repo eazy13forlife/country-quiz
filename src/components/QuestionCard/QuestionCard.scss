@@ -1,0 +1,22 @@
+.QuestionCard {
+  width: 46.4rem;
+  position: relative;
+  &__image-container {
+    width: 40%;
+  }
+  &__image {
+    width: 100%;
+  }
+  &__contents {
+    background-color: var(--primary-color);
+    border-radius: 2.4rem;
+    padding: 6.8rem 4rem 3rem 4rem;
+  }
+  &__svg {
+    width: 16rem;
+    height: 16rem;
+    position: absolute;
+    right: 0;
+    top: -3rem;
+  }
+}

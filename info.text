@@ -16,6 +16,8 @@ REDUCERS
 
 3. I need a question object that has question and 4 different answer solutions so that I can map and create a question card component for each question
 
+4.I have a questionsHistory object, that contains all the questions from start to end that ive answered. This way, when i use the previous button and go back, I can get the previous question just based on the index.If isCorrect is true, which it will be because we only move on to a question if isCorrect is true, then there will be no click event.
+
 
 //components needed
 1.One question card component. it will just render different content based on whether user got current question right
@@ -34,3 +36,6 @@ How do i make it the most interactive it can be
 //current question object with the question,the correct answer, my answer,
 number of attempts.
 //if i select wrong answer, then the key I clicked turns red and i can try again
+
+//what i need to do
+-change custom pointer to a hand

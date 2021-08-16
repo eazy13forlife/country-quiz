@@ -23,4 +23,24 @@ const getNextQuestion = () => {
   };
 };
 
-export { getNextQuestion };
+//sets isCorrect in current question object to true
+const markCorrect = () => {
+  return {
+    type: types.MARK_CORRECT,
+  };
+};
+
+//sets isCorrect in current question object to false
+const markWrong = () => {
+  return {
+    type: types.MARK_WRONG,
+  };
+};
+
+const provideAnswer = (answer) => {
+  return {
+    type: types.PROVIDE_ANSWER,
+    payload: answer,
+  };
+};
+export { getNextQuestion, markCorrect, markWrong, provideAnswer };

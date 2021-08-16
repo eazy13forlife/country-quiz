@@ -1,9 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import AnswerChoice from "../AnswerChoice/AnswerChoice";
-import { getRandomizedArray } from "../../helperFunctions";
+import { ReactComponent as ReactLogo } from "../../images/undraw_adventure_4hum 1.svg";
+import "./QuestionCard.scss";
 
 const QuestionCard = ({ cardTitle, countryInfo }) => {
+  const currentQuestion = useSelector((state) => {
+    return state.currentQuestion;
+  });
+
   let renderedAnswerChoices;
 
   if (countryInfo.answerChoices) {
@@ -26,14 +32,14 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
   const getHeading = () => {
     if (countryInfo.index % 2 === 0) {
       return (
-        <h2 className="secondary-heading">
-          {`${countryInfo.name} is the capital of`}
+        <h2 className="secondary-heading  u-margin-bottom-medium u-text-align-center">
+          {`${countryInfo.capital} is the capital of`}
         </h2>
       );
     } else {
       return (
-        <h2 className="secondary-heading">
-          <figure className="QuestionCard__image-container">
+        <h2 className="secondary-heading  u-margin-bottom-medium u-text-align-center">
+          <figure className="QuestionCard__image-container u-margin-bottom-small">
             <img
               src={countryInfo.flagImg}
               alt="Flag"
@@ -47,13 +53,26 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
     }
   };
 
+  const renderNextButton = () => {
+    if (currentQuestion.isCorrect) {
+      return (
+        <div className="u-align-left">
+          <button className="button-primary">Next</button>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div className="QuestionCard">
       <h1 className="primary-heading">{cardTitle}</h1>
+      <ReactLogo className="QuestionCard__svg" />
       <div className="QuestionCard__contents">
         {getHeading()}
         {renderedAnswerChoices}
-        <button className="button-primary">Next</button>
+        {renderNextButton()}
       </div>
     </div>
   );

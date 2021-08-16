@@ -1,0 +1,31 @@
+.AnswerChoice {
+  display: flex;
+  width: 100%;
+  padding: 1.5rem;
+  background-color: var(--primary-color);
+  align-items: center;
+  color: var(--secondary-color);
+  border-radius: 1.2rem;
+  border: 2.8px solid var(--secondary-color);
+  transition: 300ms all;
+  cursor: pointer;
+  &--success,
+  &--error {
+    border: 2.8px solid transparent;
+    color: var(--primary-color);
+  }
+  &--success {
+    background-color: var(--success-color);
+  }
+  &--error {
+    background-color: var(--reject-color);
+  }
+  &__answer {
+    margin-left: 4.6rem;
+  }
+  &:hover {
+    background-color: var(--tangent-background);
+    color: var(--primary-color);
+    border: 2.8px solid transparent;
+  }
+}

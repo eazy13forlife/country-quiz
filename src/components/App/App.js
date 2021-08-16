@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { retrieveAllQuestions, getNextQuestion } from "../../actions/";
 import QuestionCard from "../QuestionCard/QuestionCard";
 
+import "./App.scss";
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -20,7 +22,9 @@ const App = () => {
   }, []);
 
   return (
-    <QuestionCard cardTitle="Country Quiz" countryInfo={currentQuestion} />
+    <div className="CountryQuiz">
+      <QuestionCard cardTitle="Country Quiz" countryInfo={currentQuestion} />
+    </div>
   );
 };
 
