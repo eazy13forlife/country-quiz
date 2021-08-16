@@ -15,7 +15,7 @@ const getNextQuestion = () => {
           index: index,
           attempts: 0,
           isCorrect: null,
-          userAnswer: null,
+          userAnswers: [],
         },
       });
       dispatch(removeQuestion(index));

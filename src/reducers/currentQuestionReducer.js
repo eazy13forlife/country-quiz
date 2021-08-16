@@ -10,7 +10,11 @@ const currentQuestionReducer = (state = {}, action) => {
     case types.MARK_WRONG:
       return { ...state, isCorrect: false };
     case types.PROVIDE_ANSWER:
-      return { ...state, userAnswer: action.payload };
+      if (!state.userAnswers.includes(action.payload)) {
+        const newUserAnswers = [...state.userAnswers, action.payload];
+        return { ...state, userAnswers: newUserAnswers };
+      }
+      return state;
     default:
       return state;
   }
