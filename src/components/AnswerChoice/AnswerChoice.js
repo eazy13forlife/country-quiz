@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
+import { VscError } from "react-icons/vsc";
 
 import { markWrong, markCorrect, provideAnswer } from "../../actions/";
 import "./AnswerChoice.scss";
@@ -33,6 +35,15 @@ const AnswerChoice = ({ answerChoice, letter }) => {
     }
   };
 
+  const renderSuccessOrErrorIcons = () => {
+    if (renderErrorOrSuccessClass() === "AnswerChoice--success") {
+      return <IoIosCheckmarkCircleOutline className="AnswerChoice__icon" />;
+    } else if (renderErrorOrSuccessClass() === "AnswerChoice--error") {
+      return <VscError className="AnswerChoice__icon" />;
+    } else {
+      return null;
+    }
+  };
   return (
     <div
       className={`AnswerChoice u-margin-bottom-small ${renderErrorOrSuccessClass()}`}
@@ -40,6 +51,7 @@ const AnswerChoice = ({ answerChoice, letter }) => {
     >
       <p className="text">{letter}</p>
       <p className="text AnswerChoice__answer">{answerChoice}</p>
+      {renderSuccessOrErrorIcons()}
     </div>
   );
 };
