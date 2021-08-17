@@ -3,6 +3,7 @@ import { addToMissedQuestions, resetMissedQuestions } from "./missedQuestions";
 import { removeQuestion } from "./remainingQuestions";
 import {
   getNextQuestion,
+  setCurrentQuestion,
   markCorrect,
   markWrong,
   provideAnswer,
@@ -15,6 +16,7 @@ export {
   resetMissedQuestions,
   removeQuestion,
   getNextQuestion,
+  setCurrentQuestion,
   addToQuestionsHistory,
   markCorrect,
   markWrong,

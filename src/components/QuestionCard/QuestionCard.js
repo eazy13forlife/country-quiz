@@ -1,11 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import AnswerChoice from "../AnswerChoice/AnswerChoice";
 import { ReactComponent as ReactLogo } from "../../images/undraw_adventure_4hum 1.svg";
+import { getNextQuestion, addToQuestionsHistory } from "../../actions/";
+
 import "./QuestionCard.scss";
 
 const QuestionCard = ({ cardTitle, countryInfo }) => {
+  const dispatch = useDispatch();
+
   const currentQuestion = useSelector((state) => {
     return state.currentQuestion;
   });
@@ -46,18 +50,24 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
               className="QuestionCard__image"
             />
           </figure>
-
           <span>Which country does this flag belong to?</span>
         </h2>
       );
     }
   };
 
+  const onNextClick = () => {
+    dispatch(addToQuestionsHistory(currentQuestion));
+    dispatch(getNextQuestion());
+  };
+
   const renderNextButton = () => {
     if (currentQuestion.isCorrect) {
       return (
         <div className="u-align-left">
-          <button className="button-primary">Next</button>
+          <button className="button-primary" onClick={onNextClick}>
+            Next
+          </button>
         </div>
       );
     } else {

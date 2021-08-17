@@ -3,6 +3,7 @@ import types from "./types";
 import { getRandomIndex } from "../helperFunctions";
 import { removeQuestion } from "./remainingQuestions";
 
+//payload value is the next question from our remainingQuestions state. In the process, this exact question is removed from the remainingQuestions state.
 const getNextQuestion = () => {
   return (dispatch, getState) => {
     const remainingQuestions = getState().remainingQuestions;
@@ -20,6 +21,14 @@ const getNextQuestion = () => {
       });
       dispatch(removeQuestion(index));
     }
+  };
+};
+
+//called to set our currentQuestion state to a specific question
+const setCurrentQuestion = (question) => {
+  return {
+    type: types.SET_CURRENT_QUESTION,
+    payload: question,
   };
 };
 
@@ -43,4 +52,10 @@ const provideAnswer = (answer) => {
     payload: answer,
   };
 };
-export { getNextQuestion, markCorrect, markWrong, provideAnswer };
+export {
+  getNextQuestion,
+  setCurrentQuestion,
+  markCorrect,
+  markWrong,
+  provideAnswer,
+};

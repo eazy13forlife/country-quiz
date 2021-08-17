@@ -4,6 +4,8 @@ const currentQuestionReducer = (state = {}, action) => {
   switch (action.type) {
     case types.GET_NEXT_QUESTION:
       return action.payload;
+    case types.SET_CURRENT_QUESTION:
+      return action.payload;
     case types.MARK_CORRECT:
       console.log("reducer is working");
       return { ...state, isCorrect: true };
