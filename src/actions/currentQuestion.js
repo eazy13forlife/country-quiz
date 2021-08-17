@@ -2,6 +2,7 @@ import types from "./types";
 
 import { getRandomIndex } from "../helperFunctions";
 import { removeQuestion } from "./remainingQuestions";
+import { incrementQuestionNumber } from "./questionNumber";
 
 //payload value is the next question from our remainingQuestions state. In the process, this exact question is removed from the remainingQuestions state.
 const getNextQuestion = () => {
@@ -19,16 +20,39 @@ const getNextQuestion = () => {
           userAnswers: [],
         },
       });
+      dispatch(incrementQuestionNumber());
       dispatch(removeQuestion(index));
     }
   };
 };
 
+/*
+const getPreviousQuestion = () => {
+  return (dispatch, getState) => {
+    const questionNumber = getState().questionNumber;
+    if (index < remainingQuestions.length) {
+      dispatch({
+        type: types.GET_NEXT_QUESTION,
+        payload: {
+          ...remainingQuestions[index],
+          index: index,
+          attempts: 0,
+          isCorrect: null,
+          userAnswers: [],
+        },
+      });
+      dispatch(incrementQuestionNumber());
+      dispatch(removeQuestion(index));
+    }
+  };
+};
+*/
+
 //called to set our currentQuestion state to a specific question
-const setCurrentQuestion = (question) => {
+const setCurrentQuestion = (index) => {
   return {
     type: types.SET_CURRENT_QUESTION,
-    payload: question,
+    payload: index,
   };
 };
 

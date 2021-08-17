@@ -6,6 +6,7 @@ import missedQuestionsReducer from "./missedQuestionsReducer";
 import remainingQuestionsReducer from "./remainingQuestionsReducer";
 import currentQuestionReducer from "./currentQuestionReducer";
 import questionsHistoryReducer from "./questionsHistoryReducer";
+import questionNumberReducer from "./questionNumberReducer";
 
 export default combineReducers({
   allQuestions: allQuestionsReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   remainingQuestions: remainingQuestionsReducer,
   currentQuestion: currentQuestionReducer,
   questionsHistory: questionsHistoryReducer,
+  questionNumber: questionNumberReducer,
 });

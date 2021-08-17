@@ -14,21 +14,25 @@ import "./AnswerChoice.scss";
 const AnswerChoice = ({ answerChoice, letter }) => {
   const dispatch = useDispatch();
 
-  const { name, isCorrect, userAnswers } = useSelector((state) => {
-    return state.currentQuestion;
+  const questionsHistory = useSelector((state) => {
+    return state.questionsHistory;
   });
 
-  const currentQuestion = useSelector((state) => {
-    return state.currentQuestion;
+  const questionNumber = useSelector((state) => {
+    return state.questionNumber;
   });
+  const currentQuestion = questionsHistory[questionNumber]
+    ? questionsHistory[questionNumber]
+    : {};
   //so for each AnswerChoice component, i want to know what class to give it. If correct answer is chosen, i give it a success class. If wrong asnwer is chosen(whether isCorrect is true or false), i give it an errorClass. if answer hasn't been chosen, i give it a class of normal.
   const renderErrorOrSuccessClass = () => {
     if (
-      isCorrect === true &&
-      userAnswers[userAnswers.length - 1] === answerChoice
+      currentQuestion.isCorrect === true &&
+      currentQuestion.userAnswers[currentQuestion.userAnswers.length - 1] ===
+        answerChoice
     ) {
       return "AnswerChoice--success";
-    } else if (userAnswers.includes(answerChoice)) {
+    } else if (currentQuestion.userAnswers.includes(answerChoice)) {
       return "AnswerChoice--error";
     } else {
       return "AnswerChoice--normal";
@@ -36,7 +40,7 @@ const AnswerChoice = ({ answerChoice, letter }) => {
   };
 
   const onAnswerClick = () => {
-    if (answerChoice === name) {
+    if (answerChoice === currentQuestion.name) {
       dispatch(markCorrect());
       dispatch(provideAnswer(answerChoice));
     } else {
@@ -59,7 +63,7 @@ const AnswerChoice = ({ answerChoice, letter }) => {
   return (
     <div
       className={`AnswerChoice u-margin-bottom-small ${renderErrorOrSuccessClass()}`}
-      onClick={isCorrect === true ? null : onAnswerClick}
+      onClick={currentQuestion.isCorrect === true ? null : onAnswerClick}
     >
       <p className="text">{letter}</p>
       <p className="text AnswerChoice__answer">{answerChoice}</p>

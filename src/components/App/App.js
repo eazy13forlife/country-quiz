@@ -9,9 +9,16 @@ import "./App.scss";
 const App = () => {
   const dispatch = useDispatch();
 
-  const currentQuestion = useSelector((state) => {
-    return state.currentQuestion;
+  const questionsHistory = useSelector((state) => {
+    return state.questionsHistory;
   });
+
+  const questionNumber = useSelector((state) => {
+    return state.questionNumber;
+  });
+  const currentQuestion = questionsHistory[questionNumber]
+    ? questionsHistory[questionNumber]
+    : {};
 
   useEffect(() => {
     const onLoad = async () => {

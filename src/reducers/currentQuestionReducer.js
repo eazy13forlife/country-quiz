@@ -7,7 +7,6 @@ const currentQuestionReducer = (state = {}, action) => {
     case types.SET_CURRENT_QUESTION:
       return action.payload;
     case types.MARK_CORRECT:
-      console.log("reducer is working");
       return { ...state, isCorrect: true };
     case types.MARK_WRONG:
       return { ...state, isCorrect: false };

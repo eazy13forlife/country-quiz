@@ -3,16 +3,36 @@ import { useDispatch, useSelector } from "react-redux";
 
 import AnswerChoice from "../AnswerChoice/AnswerChoice";
 import { ReactComponent as ReactLogo } from "../../images/undraw_adventure_4hum 1.svg";
-import { getNextQuestion, addToQuestionsHistory } from "../../actions/";
+import {
+  getNextQuestion,
+  addToQuestionsHistory,
+  incrementQuestionNumber,
+  decrementQuestionNumber,
+} from "../../actions/";
 
 import "./QuestionCard.scss";
 
 const QuestionCard = ({ cardTitle, countryInfo }) => {
+  console.log("refresh");
   const dispatch = useDispatch();
 
-  const currentQuestion = useSelector((state) => {
-    return state.currentQuestion;
+  const questionNumber = useSelector((state) => {
+    return state.questionNumber;
   });
+
+  const questionsHistory = useSelector((state) => {
+    if (state.questionsHistory) {
+      return state.questionsHistory;
+    }
+  });
+
+  const totalQuestions = useSelector((state) => {
+    return state.allQuestions.length;
+  });
+
+  const currentQuestion = questionsHistory[questionNumber]
+    ? questionsHistory[questionNumber]
+    : {};
 
   let renderedAnswerChoices;
 
@@ -57,21 +77,41 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
   };
 
   const onNextClick = () => {
-    dispatch(addToQuestionsHistory(currentQuestion));
-    dispatch(getNextQuestion());
+    //if questionNumber is less than length of our questionsHistoryy, then we will just increment to get to the number we want. We wont get a new question yet
+    if (questionNumber <= questionsHistory.length - 2) {
+      dispatch(incrementQuestionNumber());
+    } else {
+      //we only get a new question when we are on the last question in our questionsHistory
+      dispatch(getNextQuestion());
+    }
   };
 
-  const renderNextButton = () => {
+  const onPreviousClick = () => {
+    if (questionNumber >= 1) {
+      dispatch(decrementQuestionNumber());
+    }
+  };
+
+  const renderButtons = () => {
     if (currentQuestion.isCorrect) {
       return (
-        <div className="u-align-left">
+        <div className="u-space-between">
+          <button className="button-primary" onClick={onPreviousClick}>
+            Previous
+          </button>
           <button className="button-primary" onClick={onNextClick}>
             Next
           </button>
         </div>
       );
     } else {
-      return null;
+      return (
+        <div className="u-align-left">
+          <button className="button-primary" onClick={onPreviousClick}>
+            Previous
+          </button>
+        </div>
+      );
     }
   };
 
@@ -80,9 +120,10 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
       <h1 className="primary-heading">{cardTitle}</h1>
       <ReactLogo className="QuestionCard__svg" />
       <div className="QuestionCard__contents">
+        <p className="">{`${questionNumber + 1}/${totalQuestions}`}</p>
         {getHeading()}
         {renderedAnswerChoices}
-        {renderNextButton()}
+        {renderButtons()}
       </div>
     </div>
   );

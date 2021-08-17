@@ -9,6 +9,10 @@ import {
   provideAnswer,
 } from "./currentQuestion";
 import { addToQuestionsHistory } from "./questionsHistory";
+import {
+  incrementQuestionNumber,
+  decrementQuestionNumber,
+} from "./questionNumber";
 
 export {
   retrieveAllQuestions,
@@ -21,4 +25,6 @@ export {
   markCorrect,
   markWrong,
   provideAnswer,
+  incrementQuestionNumber,
+  decrementQuestionNumber,
 };
