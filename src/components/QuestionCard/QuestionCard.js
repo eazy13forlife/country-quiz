@@ -20,18 +20,16 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
     return state.questionNumber;
   });
 
-  const questionsHistory = useSelector((state) => {
-    if (state.questionsHistory) {
-      return state.questionsHistory;
-    }
+  const questionsAsked = useSelector((state) => {
+    return state.questionsAsked;
   });
 
   const totalQuestions = useSelector((state) => {
     return state.allQuestions.length;
   });
 
-  const currentQuestion = questionsHistory[questionNumber]
-    ? questionsHistory[questionNumber]
+  const currentQuestion = questionsAsked[questionNumber]
+    ? questionsAsked[questionNumber]
     : {};
 
   let renderedAnswerChoices;
@@ -78,11 +76,12 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
 
   const onNextClick = () => {
     //if questionNumber is less than length of our questionsHistoryy, then we will just increment to get to the number we want. We wont get a new question yet
-    if (questionNumber <= questionsHistory.length - 2) {
+    if (questionNumber <= questionsAsked.length - 2) {
       dispatch(incrementQuestionNumber());
     } else {
       //we only get a new question when we are on the last question in our questionsHistory
       dispatch(getNextQuestion());
+      dispatch(incrementQuestionNumber());
     }
   };
 

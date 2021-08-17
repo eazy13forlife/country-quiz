@@ -14,15 +14,15 @@ import "./AnswerChoice.scss";
 const AnswerChoice = ({ answerChoice, letter }) => {
   const dispatch = useDispatch();
 
-  const questionsHistory = useSelector((state) => {
-    return state.questionsHistory;
+  const questionsAsked = useSelector((state) => {
+    return state.questionsAsked;
   });
 
   const questionNumber = useSelector((state) => {
     return state.questionNumber;
   });
-  const currentQuestion = questionsHistory[questionNumber]
-    ? questionsHistory[questionNumber]
+  const currentQuestion = questionsAsked[questionNumber]
+    ? questionsAsked[questionNumber]
     : {};
   //so for each AnswerChoice component, i want to know what class to give it. If correct answer is chosen, i give it a success class. If wrong asnwer is chosen(whether isCorrect is true or false), i give it an errorClass. if answer hasn't been chosen, i give it a class of normal.
   const renderErrorOrSuccessClass = () => {

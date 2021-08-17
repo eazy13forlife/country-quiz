@@ -20,7 +20,6 @@ const getNextQuestion = () => {
           userAnswers: [],
         },
       });
-      dispatch(incrementQuestionNumber());
       dispatch(removeQuestion(index));
     }
   };

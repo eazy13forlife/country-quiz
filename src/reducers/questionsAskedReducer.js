@@ -1,6 +1,6 @@
 import types from "../actions/types";
 
-const questionsHistoryReducer = (state = [], action) => {
+const questionsAskedReducer = (state = [], action) => {
   switch (action.type) {
     case types.GET_NEXT_QUESTION:
       return [...state, action.payload];
@@ -34,4 +34,4 @@ const questionsHistoryReducer = (state = [], action) => {
   }
 };
 
-export default questionsHistoryReducer;
+export default questionsAskedReducer;
