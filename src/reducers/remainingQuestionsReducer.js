@@ -10,6 +10,8 @@ const remainingQuestionsReducer = (state = [], action) => {
       newState.splice(action.payload, 1);
       return newState;
     }
+    case types.RESET_REMAINING_QUESTIONS:
+      return action.payload;
     default:
       return state;
   }

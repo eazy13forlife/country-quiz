@@ -5,12 +5,14 @@ import allQuestionsReducer from "./allQuestions";
 import missedQuestionsReducer from "./missedQuestionsReducer";
 import remainingQuestionsReducer from "./remainingQuestionsReducer";
 import questionsAskedReducer from "./questionsAskedReducer";
-import questionNumberReducer from "./questionNumberReducer";
+import questionAskedIndexReducer from "./questionAskedIndexReducer";
+import seeResultsReducer from "./seeResultsReducer";
 
 export default combineReducers({
   allQuestions: allQuestionsReducer,
   missedQuestions: missedQuestionsReducer,
   remainingQuestions: remainingQuestionsReducer,
   questionsAsked: questionsAskedReducer,
-  questionNumber: questionNumberReducer,
+  questionAskedIndex: questionAskedIndexReducer,
+  seeResults: seeResultsReducer,
 });

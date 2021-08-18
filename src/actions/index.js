@@ -1,18 +1,25 @@
 import { retrieveAllQuestions } from "./allQuestions";
+
 import { addToMissedQuestions, resetMissedQuestions } from "./missedQuestions";
-import { removeQuestion } from "./remainingQuestions";
+
+import { removeQuestion, resetRemainingQuestions } from "./remainingQuestions";
+
 import {
   getNextQuestion,
   setCurrentQuestion,
   markCorrect,
   markWrong,
   provideAnswer,
-} from "./currentQuestion";
-import { addToQuestionsHistory } from "./questionsHistory";
+  resetQuestionsAsked,
+} from "./questionsAsked";
+
 import {
-  incrementQuestionNumber,
-  decrementQuestionNumber,
-} from "./questionNumber";
+  incrementQuestionIndex,
+  decrementQuestionIndex,
+  resetQuestionIndex,
+} from "./questionAskedIndex";
+
+import { viewResults, hideResults } from "./seeResults";
 
 export {
   retrieveAllQuestions,
@@ -21,10 +28,14 @@ export {
   removeQuestion,
   getNextQuestion,
   setCurrentQuestion,
-  addToQuestionsHistory,
   markCorrect,
   markWrong,
   provideAnswer,
-  incrementQuestionNumber,
-  decrementQuestionNumber,
+  incrementQuestionIndex,
+  decrementQuestionIndex,
+  viewResults,
+  hideResults,
+  resetQuestionIndex,
+  resetQuestionsAsked,
+  resetRemainingQuestions,
 };

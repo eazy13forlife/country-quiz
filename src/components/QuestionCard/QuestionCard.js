@@ -6,8 +6,9 @@ import { ReactComponent as ReactLogo } from "../../images/undraw_adventure_4hum 
 import {
   getNextQuestion,
   addToQuestionsHistory,
-  incrementQuestionNumber,
-  decrementQuestionNumber,
+  incrementQuestionIndex,
+  decrementQuestionIndex,
+  viewResults,
 } from "../../actions/";
 
 import "./QuestionCard.scss";
@@ -16,8 +17,8 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
   console.log("refresh");
   const dispatch = useDispatch();
 
-  const questionNumber = useSelector((state) => {
-    return state.questionNumber;
+  const questionAskedIndex = useSelector((state) => {
+    return state.questionAskedIndex;
   });
 
   const questionsAsked = useSelector((state) => {
@@ -28,8 +29,8 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
     return state.allQuestions.length;
   });
 
-  const currentQuestion = questionsAsked[questionNumber]
-    ? questionsAsked[questionNumber]
+  const currentQuestion = questionsAsked[questionAskedIndex]
+    ? questionsAsked[questionAskedIndex]
     : {};
 
   let renderedAnswerChoices;
@@ -52,7 +53,7 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
   }
 
   const getHeading = () => {
-    if (countryInfo.index % 2 === 0) {
+    if (countryInfo.indexInRemainingQuestions % 2 === 0) {
       return (
         <h2 className="secondary-heading  u-margin-bottom-medium u-text-align-center">
           {`${countryInfo.capital} is the capital of`}
@@ -75,24 +76,42 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
   };
 
   const onNextClick = () => {
-    //if questionNumber is less than length of our questionsHistoryy, then we will just increment to get to the number we want. We wont get a new question yet
-    if (questionNumber <= questionsAsked.length - 2) {
-      dispatch(incrementQuestionNumber());
+    //if questionAskedIndex is less than length of our questionsHistoryy, then we will just increment to get to the number we want. We wont get a new question yet
+    if (questionAskedIndex <= questionsAsked.length - 2) {
+      dispatch(incrementQuestionIndex());
     } else {
       //we only get a new question when we are on the last question in our questionsHistory
       dispatch(getNextQuestion());
-      dispatch(incrementQuestionNumber());
+      dispatch(incrementQuestionIndex());
     }
   };
 
   const onPreviousClick = () => {
-    if (questionNumber >= 1) {
-      dispatch(decrementQuestionNumber());
+    if (questionAskedIndex >= 1) {
+      dispatch(decrementQuestionIndex());
     }
   };
 
+  const onReviewQuestionsClick = () => {
+    dispatch(viewResults());
+  };
+
   const renderButtons = () => {
-    if (currentQuestion.isCorrect) {
+    if (
+      currentQuestion.isCorrect === true &&
+      questionAskedIndex === totalQuestions - 1
+    ) {
+      return (
+        <div className="u-space-between">
+          <button className="button-primary" onClick={onPreviousClick}>
+            Previous
+          </button>
+          <button className="button-primary" onClick={onReviewQuestionsClick}>
+            Review Missed ?s
+          </button>
+        </div>
+      );
+    } else if (currentQuestion.isCorrect) {
       return (
         <div className="u-space-between">
           <button className="button-primary" onClick={onPreviousClick}>
@@ -119,7 +138,9 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
       <h1 className="primary-heading">{cardTitle}</h1>
       <ReactLogo className="QuestionCard__svg" />
       <div className="QuestionCard__contents">
-        <p className="">{`${questionNumber + 1}/${totalQuestions}`}</p>
+        <p className="text u-margin-bottom-small">{`${
+          questionAskedIndex + 1
+        }/${totalQuestions}`}</p>
         {getHeading()}
         {renderedAnswerChoices}
         {renderButtons()}

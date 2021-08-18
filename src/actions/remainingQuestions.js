@@ -8,4 +8,15 @@ const removeQuestion = (remainingQuestionsIndex) => {
   };
 };
 
-export { removeQuestion };
+//resets the remainingQuestions state to equal allQuestions
+const resetRemainingQuestions = () => {
+  return (dispatch, getState) => {
+    const allQuestions = getState().allQuestions;
+    dispatch({
+      type: types.RESET_REMAINING_QUESTIONS,
+      payload: allQuestions,
+    });
+  };
+};
+
+export { removeQuestion, resetRemainingQuestions };

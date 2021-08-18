@@ -10,7 +10,7 @@ const retrieveAllQuestions = () => {
       "https://restcountries.eu/rest/v2/all"
     );
     const questions = [];
-    createQuestionsArray(questions, allCountries.data, 20);
+    createQuestionsArray(questions, allCountries.data, 2);
 
     dispatch({
       type: types.RETRIEVE_ALL_QUESTIONS,

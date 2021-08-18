@@ -7,37 +7,59 @@ import {
   incrementQuestionNumber,
 } from "../../actions/";
 import QuestionCard from "../QuestionCard/QuestionCard";
+import Results from "../Results/Results.js";
 
 import "./App.scss";
 
 const App = () => {
   const dispatch = useDispatch();
 
+  const seeResults = useSelector((state) => {
+    return state.seeResults;
+  });
+
+  const missedQuestions = useSelector((state) => {
+    return state.missedQuestions;
+  });
+
   const questionsAsked = useSelector((state) => {
     return state.questionsAsked;
   });
 
-  const questionNumber = useSelector((state) => {
-    return state.questionNumber;
+  const questionAskedIndex = useSelector((state) => {
+    return state.questionAskedIndex;
   });
-  const currentQuestion = questionsAsked[questionNumber]
-    ? questionsAsked[questionNumber]
+  const currentQuestion = questionsAsked[questionAskedIndex]
+    ? questionsAsked[questionAskedIndex]
     : {};
 
   useEffect(() => {
     const onLoad = async () => {
       await dispatch(retrieveAllQuestions());
       dispatch(getNextQuestion());
-      dispatch(incrementQuestionNumber());
     };
     onLoad();
   }, []);
 
-  return (
-    <div className="CountryQuiz">
-      <QuestionCard cardTitle="Country Quiz" countryInfo={currentQuestion} />
-    </div>
-  );
+  const renderBody = () => {
+    if (seeResults) {
+      return (
+        <div className="CountryQuiz">
+          <Results missedQuestions={missedQuestions} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="CountryQuiz">
+          <QuestionCard
+            cardTitle="Country Quiz"
+            countryInfo={currentQuestion}
+          />
+        </div>
+      );
+    }
+  };
+  return renderBody();
 };
 
 export default App;
