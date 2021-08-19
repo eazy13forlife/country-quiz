@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+
 import { ReactComponent as ReactLogo } from "../../images/undraw_adventure_4hum 1.svg";
 import "./Results.scss";
 import {
@@ -11,6 +12,7 @@ import {
   getNextQuestion,
   retrieveAllQuestions,
 } from "../../actions/";
+
 const Results = ({ missedQuestions }) => {
   const dispatch = useDispatch();
 
@@ -60,7 +62,7 @@ const Results = ({ missedQuestions }) => {
         <span className="text">{index + 1}.</span>
         <div className="Result__question-info">
           {getQuestion(country)}
-          <p className="text">{country.name}</p>
+          <p className="text u-margin-bottom-small">{country.name}</p>
         </div>
       </div>
     );
@@ -71,12 +73,16 @@ const Results = ({ missedQuestions }) => {
       <h1 className="primary-heading">Country Quiz</h1>
       <ReactLogo className="Results__svg" />
       <div className="Results__contents">
-        <h2 className="secondary-heading u-text-align-center u-margin-bottom-medium">
+        <h2 className="secondary-heading u-text-align-center u-margin-bottom-medium u-underline">
           Missed Questions
         </h2>
-        {missedQuestions.length
-          ? renderedMissedQuestions
-          : `You got everything right!`}
+        {missedQuestions.length ? (
+          renderedMissedQuestions
+        ) : (
+          <p className="text u-text-align-center u-margin-bottom-medium">
+            You got everything right!
+          </p>
+        )}
         <div className="u-space-between">
           <button className="button-secondary" onClick={onTryAgainClick}>
             Try Again

@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  retrieveAllQuestions,
-  getNextQuestion,
-  incrementQuestionNumber,
-} from "../../actions/";
+import { retrieveAllQuestions, getNextQuestion } from "../../actions/";
 import QuestionCard from "../QuestionCard/QuestionCard";
 import Results from "../Results/Results.js";
 
 import "./App.scss";
-console.log(1 % 2);
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -29,6 +25,7 @@ const App = () => {
   const questionAskedIndex = useSelector((state) => {
     return state.questionAskedIndex;
   });
+
   const currentQuestion = questionsAsked[questionAskedIndex]
     ? questionsAsked[questionAskedIndex]
     : {};

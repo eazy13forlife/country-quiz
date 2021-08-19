@@ -1,3 +1,5 @@
+@use "../abstracts";
+
 .primary-heading {
   color: var(--primary-color);
   font-weight: 700;
@@ -10,4 +12,8 @@
 }
 .text {
   font-size: 1.8rem;
+
+  @include abstracts.respondMax(400px) {
+    font-size: 1.6rem;
+  }
 }

@@ -1,6 +1,11 @@
+.Results {
+  color: var(--tertiary-color);
+}
+
 .Result {
   &__missed-question {
     display: flex;
+    border-bottom: 1px solid var(--tertiary-color);
   }
   &__question-info {
     margin-left: 3rem;

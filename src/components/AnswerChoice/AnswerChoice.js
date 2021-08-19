@@ -21,10 +21,15 @@ const AnswerChoice = ({ answerChoice, letter }) => {
   const questionAskedIndex = useSelector((state) => {
     return state.questionAskedIndex;
   });
+
   const currentQuestion = questionsAsked[questionAskedIndex]
     ? questionsAsked[questionAskedIndex]
     : {};
-  //so for each AnswerChoice component, i want to know what class to give it. If correct answer is chosen, i give it a success class. If wrong asnwer is chosen(whether isCorrect is true or false), i give it an errorClass. if answer hasn't been chosen, i give it a class of normal.
+
+  //so for each AnswerChoice component, I want to know what class to give it. If
+  //correct answer is chosen, I give it a success class. If wrong answer is chosen
+  //(whether isCorrect is true or false), I give it an errorClass. If answer
+  //hasn't been chosen, i give it a class of normal.
   const renderErrorOrSuccessClass = () => {
     if (
       currentQuestion.isCorrect === true &&
@@ -39,6 +44,16 @@ const AnswerChoice = ({ answerChoice, letter }) => {
     }
   };
 
+  const renderSuccessOrErrorIcons = () => {
+    if (renderErrorOrSuccessClass() === "AnswerChoice--success") {
+      return <IoIosCheckmarkCircleOutline className="AnswerChoice__icon" />;
+    } else if (renderErrorOrSuccessClass() === "AnswerChoice--error") {
+      return <VscError className="AnswerChoice__icon" />;
+    } else {
+      return null;
+    }
+  };
+
   const onAnswerClick = () => {
     if (answerChoice === currentQuestion.name) {
       dispatch(markCorrect());
@@ -47,16 +62,6 @@ const AnswerChoice = ({ answerChoice, letter }) => {
       dispatch(markWrong());
       dispatch(provideAnswer(answerChoice));
       dispatch(addToMissedQuestions(currentQuestion));
-    }
-  };
-
-  const renderSuccessOrErrorIcons = () => {
-    if (renderErrorOrSuccessClass() === "AnswerChoice--success") {
-      return <IoIosCheckmarkCircleOutline className="AnswerChoice__icon" />;
-    } else if (renderErrorOrSuccessClass() === "AnswerChoice--error") {
-      return <VscError className="AnswerChoice__icon" />;
-    } else {
-      return null;
     }
   };
 

@@ -1,16 +1,19 @@
 import types from "./types";
 
-//takes in the question missed and its correct answer. Since a question includes a flag, i cant put the image in the question, so I'm providing all the components needed to recreate this question
+//takes in the country object of the question missed in order to be added
+//to our missed questions state. Since a question includes a flag and I cant put
+//the image in the question,I'm providing all the components needed to recreate
+//this question from scratch
 const addToMissedQuestions = (currentQuestion) => {
-  const updatedCurrent = { ...currentQuestion };
-  delete updatedCurrent.answerChoices;
-  delete updatedCurrent.isCorrect;
-  delete updatedCurrent.userAnswers;
-  delete updatedCurrent.attempts;
+  const { name, capital, flagImg, indexInAllQuestions } = currentQuestion;
+
   return {
     type: types.ADD_TO_MISSED_QUESTIONS,
     payload: {
-      ...updatedCurrent,
+      name,
+      capital,
+      flagImg,
+      indexInAllQuestions,
     },
   };
 };

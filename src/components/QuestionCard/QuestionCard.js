@@ -5,7 +5,6 @@ import AnswerChoice from "../AnswerChoice/AnswerChoice";
 import { ReactComponent as ReactLogo } from "../../images/undraw_adventure_4hum 1.svg";
 import {
   getNextQuestion,
-  addToQuestionsHistory,
   incrementQuestionIndex,
   decrementQuestionIndex,
   viewResults,
@@ -14,7 +13,6 @@ import {
 import "./QuestionCard.scss";
 
 const QuestionCard = ({ cardTitle, countryInfo }) => {
-  console.log("refresh");
   const dispatch = useDispatch();
 
   const questionAskedIndex = useSelector((state) => {
@@ -76,20 +74,19 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
   };
 
   const onNextClick = () => {
-    //if questionAskedIndex is less than length of our questionsHistoryy, then we will just increment to get to the number we want. We wont get a new question yet
+    //if questionAskedIndex is less than length of our questionsAsked state then we will just increment to get to the next index. We wont get a new question yet
     if (questionAskedIndex <= questionsAsked.length - 2) {
       dispatch(incrementQuestionIndex());
     } else {
-      //we only get a new question when we are on the last question in our questionsHistory
+      //we only get a new question when we are on the last question in our
+      // questionsAsked state
       dispatch(getNextQuestion());
       dispatch(incrementQuestionIndex());
     }
   };
 
   const onPreviousClick = () => {
-    if (questionAskedIndex >= 1) {
-      dispatch(decrementQuestionIndex());
-    }
+    dispatch(decrementQuestionIndex());
   };
 
   const onReviewQuestionsClick = () => {

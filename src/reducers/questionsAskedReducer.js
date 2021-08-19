@@ -27,10 +27,6 @@ const questionsAskedReducer = (state = [], action) => {
     }
     case types.RESET_QUESTIONS_ASKED:
       return [];
-    /*
-    case types.ADD_TO_QUESTIONS_HISTORY:
-      return [...state, action.payload];
-      */
     default:
       return state;
   }

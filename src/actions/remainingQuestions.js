@@ -8,7 +8,8 @@ const removeQuestion = (remainingQuestionsIndex) => {
   };
 };
 
-//resets the remainingQuestions state to equal allQuestions
+//called when wanting to reset the remainingQuestions state to equal
+//all the questions in allQuestions state
 const resetRemainingQuestions = () => {
   return (dispatch, getState) => {
     const allQuestions = getState().allQuestions;

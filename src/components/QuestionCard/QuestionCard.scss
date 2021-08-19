@@ -1,17 +1,40 @@
+@use "../../styles/abstracts";
 .QuestionCard,
 .Results {
+  .primary-heading {
+    @include abstracts.respondMax(400px) {
+      margin-left: 2rem;
+    }
+  }
   width: 46.4rem;
   position: relative;
+  @include abstracts.respondMax(600px) {
+    width: 40rem;
+  }
+  @include abstracts.respondMax(400px) {
+    border-radius: 0rem;
+  }
   &__image-container {
+    border: 2px dotted var(--tertiary-color);
     width: 40%;
+    @include abstracts.respondMax(400px) {
+      width: 70%;
+    }
   }
   &__image {
     width: 100%;
+    display: block;
   }
   &__contents {
     background-color: var(--primary-color);
     border-radius: 2.4rem;
     padding: 6.8rem 4rem 3rem 4rem;
+    @include abstracts.respondMax(600px) {
+      border-radius: 0rem;
+    }
+    @include abstracts.respondMax(400px) {
+      padding: 4rem;
+    }
   }
   &__svg {
     width: 16rem;
@@ -19,5 +42,8 @@
     position: absolute;
     right: 0;
     top: -3rem;
+    @include abstracts.respondMax(400px) {
+      display: none;
+    }
   }
 }

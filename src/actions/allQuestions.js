@@ -1,16 +1,17 @@
 import axios from "axios";
 
 import types from "./types";
-import { getRandomIndex, swap, randomizeArray } from "../helperFunctions";
+import { swap, randomizeArray } from "../helperFunctions";
 
-//payload is an array of 20 random country objects(along with answer choices for each country) in order to be used as the basis for our questions.
+//fetches a specific amount of country objects from our api, in order to be used
+//as the basis for our questions.
 const retrieveAllQuestions = () => {
   return async (dispatch) => {
     const allCountries = await axios.get(
       "https://restcountries.eu/rest/v2/all"
     );
     const questions = [];
-    createQuestionsArray(questions, allCountries.data, 2);
+    createQuestionsArray(questions, allCountries.data, 10);
 
     dispatch({
       type: types.RETRIEVE_ALL_QUESTIONS,
@@ -22,15 +23,15 @@ const retrieveAllQuestions = () => {
 ////////////////HELPER FUNCTIONS////////////////////
 
 const createQuestionsArray = (result, data, quantity) => {
-  //if we want "quantity" of random items, shuffle the last "quantity" items in our data first
+  //if we want "quantity" random items, shuffle the last "quantity" items in our data first
   for (let i = data.length - 1; i > data.length - 1 - quantity; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
     swap(data, randomIndex, i);
   }
 
-  //then push the last "quantity" items into our result.
-  //since we will be manipulating data array via pop() and getting new length
-  //values, we save our endIndex
+  //then push the last "quantity" items that are random into our result.
+  //since we will be manipulating data array via pop() for every iteration and
+  // getting new length values, we save our initial endIndex
   const endIndex = data.length - 1 - quantity;
   for (let i = data.length - 1; i > endIndex; i--) {
     const country = data[i];
@@ -54,7 +55,8 @@ const createQuestionsArray = (result, data, quantity) => {
 const addAnswerChoices = (result, data, quantity) => {
   const dataCopy = [...data];
   //we shuffle the last "quantity" items and push them in as answer choices
-  //we shuffle for extra randomness across answer choices. Don't necessarily need ///to
+  //we shuffle for extra randomness across answer choices. Don't necessarily need
+  //to
   for (let i = dataCopy.length - 1; i > dataCopy.length - 1 - quantity; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
     swap(dataCopy, randomIndex, i);
