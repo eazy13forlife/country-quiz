@@ -39,6 +39,7 @@ const createQuestionsArray = (result, data, quantity) => {
       capital: country.capital,
       flagImg: country.flag,
       answerChoices: [country.name],
+      indexInAllQuestions: i,
     });
 
     // we remove the last country object so its not available as an answer choice

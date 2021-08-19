@@ -10,7 +10,7 @@ import QuestionCard from "../QuestionCard/QuestionCard";
 import Results from "../Results/Results.js";
 
 import "./App.scss";
-
+console.log(1 % 2);
 const App = () => {
   const dispatch = useDispatch();
 

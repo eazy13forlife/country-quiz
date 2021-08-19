@@ -14,7 +14,6 @@ const getNextQuestion = () => {
         type: types.GET_NEXT_QUESTION,
         payload: {
           ...remainingQuestions[index],
-          indexInRemainingQuestions: index,
           attempts: 0,
           isCorrect: null,
           userAnswers: [],

@@ -53,7 +53,7 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
   }
 
   const getHeading = () => {
-    if (countryInfo.indexInRemainingQuestions % 2 === 0) {
+    if (countryInfo.indexInAllQuestions % 2 === 0) {
       return (
         <h2 className="secondary-heading  u-margin-bottom-medium u-text-align-center">
           {`${countryInfo.capital} is the capital of`}

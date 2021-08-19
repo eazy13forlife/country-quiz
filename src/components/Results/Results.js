@@ -9,6 +9,7 @@ import {
   hideResults,
   resetQuestionIndex,
   getNextQuestion,
+  retrieveAllQuestions,
 } from "../../actions/";
 const Results = ({ missedQuestions }) => {
   const dispatch = useDispatch();
@@ -21,8 +22,18 @@ const Results = ({ missedQuestions }) => {
     dispatch(resetQuestionIndex());
     dispatch(getNextQuestion());
   };
+
+  const onTryNewQuestionsClick = async () => {
+    await dispatch(retrieveAllQuestions());
+    dispatch(resetMissedQuestions());
+    dispatch(resetQuestionsAsked());
+    dispatch(hideResults());
+    dispatch(resetQuestionIndex());
+    dispatch(getNextQuestion());
+  };
+
   const getQuestion = (country) => {
-    if (country.indexInRemainingQuestions % 2 === 0) {
+    if (country.indexInAllQuestions % 2 === 0) {
       return (
         <h2 className="secondary-heading">
           {`${country.capital} is the capital of : `}
@@ -70,7 +81,9 @@ const Results = ({ missedQuestions }) => {
           <button className="button-secondary" onClick={onTryAgainClick}>
             Try Again
           </button>
-          <button className="button-secondary">Try New Questions</button>
+          <button className="button-secondary" onClick={onTryNewQuestionsClick}>
+            Try New Questions
+          </button>
         </div>
       </div>
     </div>
