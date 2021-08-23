@@ -43,10 +43,12 @@ const App = () => {
   const renderBody = () => {
     if (seeResults) {
       return (
-        <div className="CountryQuiz">
-          <Results missedCountries={missedCountries} />
+        <Container>
+          <div className="CountryQuiz">
+            <Results missedCountries={missedCountries} />
+          </div>
           <Footer />
-        </div>
+        </Container>
       );
     } else {
       return (
