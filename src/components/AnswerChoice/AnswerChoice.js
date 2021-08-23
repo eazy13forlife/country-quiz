@@ -11,20 +11,8 @@ import {
 } from "../../actions/";
 import "./AnswerChoice.scss";
 
-const AnswerChoice = ({ answerChoice, letter }) => {
+const AnswerChoice = ({ answerChoice, letter, currentQuestion }) => {
   const dispatch = useDispatch();
-
-  const questionsAsked = useSelector((state) => {
-    return state.questionsAsked;
-  });
-
-  const questionAskedIndex = useSelector((state) => {
-    return state.questionAskedIndex;
-  });
-
-  const currentQuestion = questionsAsked[questionAskedIndex]
-    ? questionsAsked[questionAskedIndex]
-    : {};
 
   //so for each AnswerChoice component, I want to know what class to give it. If
   //correct answer is chosen, I give it a success class. If wrong answer is chosen

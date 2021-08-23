@@ -12,24 +12,18 @@ import {
 
 import "./QuestionCard.scss";
 
-const QuestionCard = ({ cardTitle, countryInfo }) => {
+const QuestionCard = ({
+  cardTitle,
+  countryInfo,
+  currentQuestion,
+  questionsAsked,
+  questionAskedIndex,
+}) => {
   const dispatch = useDispatch();
-
-  const questionAskedIndex = useSelector((state) => {
-    return state.questionAskedIndex;
-  });
-
-  const questionsAsked = useSelector((state) => {
-    return state.questionsAsked;
-  });
 
   const totalQuestions = useSelector((state) => {
     return state.allQuestions.length;
   });
-
-  const currentQuestion = questionsAsked[questionAskedIndex]
-    ? questionsAsked[questionAskedIndex]
-    : {};
 
   let renderedAnswerChoices;
 
@@ -42,6 +36,7 @@ const QuestionCard = ({ cardTitle, countryInfo }) => {
             key={index}
             letter={letter}
             answerChoice={answerChoice}
+            currentQuestion={currentQuestion}
           />
         );
       }

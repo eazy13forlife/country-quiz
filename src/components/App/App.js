@@ -51,6 +51,9 @@ const App = () => {
           <QuestionCard
             cardTitle="Country Quiz"
             countryInfo={currentQuestion}
+            currentQuestion={currentQuestion}
+            questionsAsked={questionsAsked}
+            questionAskedIndex={questionAskedIndex}
           />
         </div>
       );
