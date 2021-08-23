@@ -7,11 +7,11 @@ import {
   markWrong,
   markCorrect,
   provideAnswer,
-  addToMissedQuestions,
+  addToMissedCountries,
 } from "../../actions/";
 import "./AnswerChoice.scss";
 
-const AnswerChoice = ({ answerChoice, letter, currentQuestion }) => {
+const AnswerChoice = ({ answerChoice, letter, currentCountry }) => {
   const dispatch = useDispatch();
 
   //so for each AnswerChoice component, I want to know what class to give it. If
@@ -20,12 +20,12 @@ const AnswerChoice = ({ answerChoice, letter, currentQuestion }) => {
   //hasn't been chosen, i give it a class of normal.
   const renderErrorOrSuccessClass = () => {
     if (
-      currentQuestion.isCorrect === true &&
-      currentQuestion.userAnswers[currentQuestion.userAnswers.length - 1] ===
+      currentCountry.isCorrect === true &&
+      currentCountry.userAnswers[currentCountry.userAnswers.length - 1] ===
         answerChoice
     ) {
       return "AnswerChoice--success";
-    } else if (currentQuestion.userAnswers.includes(answerChoice)) {
+    } else if (currentCountry.userAnswers.includes(answerChoice)) {
       return "AnswerChoice--error";
     } else {
       return "AnswerChoice--normal";
@@ -43,20 +43,20 @@ const AnswerChoice = ({ answerChoice, letter, currentQuestion }) => {
   };
 
   const onAnswerClick = () => {
-    if (answerChoice === currentQuestion.name) {
+    if (answerChoice === currentCountry.name) {
       dispatch(markCorrect());
       dispatch(provideAnswer(answerChoice));
     } else {
       dispatch(markWrong());
       dispatch(provideAnswer(answerChoice));
-      dispatch(addToMissedQuestions(currentQuestion));
+      dispatch(addToMissedCountries(currentCountry));
     }
   };
 
   return (
     <div
       className={`AnswerChoice u-margin-bottom-small ${renderErrorOrSuccessClass()}`}
-      onClick={currentQuestion.isCorrect === true ? null : onAnswerClick}
+      onClick={currentCountry.isCorrect === true ? null : onAnswerClick}
     >
       <p className="text">{letter}</p>
       <p className="text AnswerChoice__answer">{answerChoice}</p>

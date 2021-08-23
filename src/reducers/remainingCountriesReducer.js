@@ -2,15 +2,16 @@ import types from "../actions/types";
 
 const remainingQuestionsReducer = (state = [], action) => {
   switch (action.type) {
-    //if retrieveAllQuestions is called, we are working with a new set of questions,so we want remainingQuestions to equal this new set of questions
-    case types.RETRIEVE_ALL_QUESTIONS:
+    //if retrieveAllQuestions is called, we are working with a new set of
+    //countries,so we want remainingQuestions to equal this new set of questions
+    case types.RETRIEVE_COUNTRIES:
       return action.payload;
-    case types.REMOVE_QUESTION: {
+    case types.REMOVE_COUNTRY: {
       const newState = [...state];
       newState.splice(action.payload, 1);
       return newState;
     }
-    case types.RESET_REMAINING_QUESTIONS:
+    case types.RESET_REMAINING_COUNTRIES:
       return action.payload;
     default:
       return state;

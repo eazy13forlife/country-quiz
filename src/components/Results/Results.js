@@ -4,34 +4,34 @@ import { useDispatch } from "react-redux";
 import { ReactComponent as ReactLogo } from "../../images/undraw_adventure_4hum 1.svg";
 import "./Results.scss";
 import {
-  resetRemainingQuestions,
-  resetMissedQuestions,
-  resetQuestionsAsked,
+  resetRemainingCountries,
+  resetMissedCountries,
+  resetCountriesAsked,
   hideResults,
-  resetQuestionIndex,
-  getNextQuestion,
-  retrieveAllQuestions,
+  resetCountryIndex,
+  getNextCountry,
+  retrieveCountries,
 } from "../../actions/";
 
-const Results = ({ missedQuestions }) => {
+const Results = ({ missedCountries }) => {
   const dispatch = useDispatch();
 
   const onTryAgainClick = () => {
-    dispatch(resetRemainingQuestions());
-    dispatch(resetMissedQuestions());
-    dispatch(resetQuestionsAsked());
+    dispatch(resetRemainingCountries());
+    dispatch(resetMissedCountries());
+    dispatch(resetCountriesAsked());
     dispatch(hideResults());
-    dispatch(resetQuestionIndex());
-    dispatch(getNextQuestion());
+    dispatch(resetCountryIndex());
+    dispatch(getNextCountry());
   };
 
   const onTryNewQuestionsClick = async () => {
-    await dispatch(retrieveAllQuestions());
-    dispatch(resetMissedQuestions());
-    dispatch(resetQuestionsAsked());
+    await dispatch(retrieveCountries());
+    dispatch(resetMissedCountries());
+    dispatch(resetCountriesAsked());
     dispatch(hideResults());
-    dispatch(resetQuestionIndex());
-    dispatch(getNextQuestion());
+    dispatch(resetCountryIndex());
+    dispatch(getNextCountry());
   };
 
   const getQuestion = (country) => {
@@ -53,7 +53,7 @@ const Results = ({ missedQuestions }) => {
     }
   };
 
-  const renderedMissedQuestions = missedQuestions.map((country, index) => {
+  const renderedMissedCountries = missedCountries.map((country, index) => {
     return (
       <div
         className="Result__missed-question u-margin-bottom-small"
@@ -76,8 +76,8 @@ const Results = ({ missedQuestions }) => {
         <h2 className="secondary-heading u-text-align-center u-margin-bottom-medium u-underline">
           Missed Questions
         </h2>
-        {missedQuestions.length ? (
-          renderedMissedQuestions
+        {missedCountries.length ? (
+          renderedMissedCountries
         ) : (
           <p className="text u-text-align-center u-margin-bottom-medium">
             You got everything right!

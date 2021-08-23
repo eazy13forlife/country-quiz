@@ -1,39 +1,39 @@
-import { retrieveAllQuestions } from "./allQuestions";
+import { retrieveCountries } from "./allCountries";
 
-import { addToMissedQuestions, resetMissedQuestions } from "./missedQuestions";
+import { addToMissedCountries, resetMissedCountries } from "./missedCountries";
 
-import { removeQuestion, resetRemainingQuestions } from "./remainingQuestions";
+import { removeCountry, resetRemainingCountries } from "./remainingCountries";
 
 import {
-  getNextQuestion,
+  getNextCountry,
   markCorrect,
   markWrong,
   provideAnswer,
-  resetQuestionsAsked,
-} from "./questionsAsked";
+  resetCountriesAsked,
+} from "./countriesAsked";
 
 import {
-  incrementQuestionIndex,
-  decrementQuestionIndex,
-  resetQuestionIndex,
-} from "./questionAskedIndex";
+  incrementCountryIndex,
+  decrementCountryIndex,
+  resetCountryIndex,
+} from "./countryAskedIndex";
 
 import { viewResults, hideResults } from "./seeResults";
 
 export {
-  retrieveAllQuestions,
-  addToMissedQuestions,
-  resetMissedQuestions,
-  removeQuestion,
-  getNextQuestion,
+  retrieveCountries,
+  addToMissedCountries,
+  resetMissedCountries,
+  removeCountry,
+  getNextCountry,
   markCorrect,
   markWrong,
   provideAnswer,
-  incrementQuestionIndex,
-  decrementQuestionIndex,
+  incrementCountryIndex,
+  decrementCountryIndex,
   viewResults,
   hideResults,
-  resetQuestionIndex,
-  resetQuestionsAsked,
-  resetRemainingQuestions,
+  resetCountryIndex,
+  resetCountriesAsked,
+  resetRemainingCountries,
 };

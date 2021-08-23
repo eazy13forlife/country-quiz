@@ -1,18 +1,18 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 
-import allQuestionsReducer from "./allQuestions";
-import missedQuestionsReducer from "./missedQuestionsReducer";
-import remainingQuestionsReducer from "./remainingQuestionsReducer";
-import questionsAskedReducer from "./questionsAskedReducer";
-import questionAskedIndexReducer from "./questionAskedIndexReducer";
+import allQuestionsReducer from "./allCountries";
+import missedCountriesReducer from "./missedCountriesReducer";
+import remainingCountriesReducer from "./remainingCountriesReducer";
+import countriesAskedReducer from "./countriesAskedReducer";
+import countryAskedIndexReducer from "./countryAskedIndexReducer";
 import seeResultsReducer from "./seeResultsReducer";
 
 export default combineReducers({
-  allQuestions: allQuestionsReducer,
-  missedQuestions: missedQuestionsReducer,
-  remainingQuestions: remainingQuestionsReducer,
-  questionsAsked: questionsAskedReducer,
-  questionAskedIndex: questionAskedIndexReducer,
+  allCountries: allQuestionsReducer,
+  missedCountries: missedCountriesReducer,
+  remainingCountries: remainingCountriesReducer,
+  countriesAsked: countriesAskedReducer,
+  countryAskedIndex: countryAskedIndexReducer,
   seeResults: seeResultsReducer,
 });

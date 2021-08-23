@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { retrieveAllQuestions, getNextQuestion } from "../../actions/";
+import { retrieveCountries, getNextCountry } from "../../actions/";
 import QuestionCard from "../QuestionCard/QuestionCard";
 import Results from "../Results/Results.js";
+import Footer from "../Footer/Footer.js";
+import Container from "../Container/Container.js";
 
 import "./App.scss";
 
@@ -14,26 +16,26 @@ const App = () => {
     return state.seeResults;
   });
 
-  const missedQuestions = useSelector((state) => {
-    return state.missedQuestions;
+  const missedCountries = useSelector((state) => {
+    return state.missedCountries;
   });
 
-  const questionsAsked = useSelector((state) => {
-    return state.questionsAsked;
+  const countriesAsked = useSelector((state) => {
+    return state.countriesAsked;
   });
 
-  const questionAskedIndex = useSelector((state) => {
-    return state.questionAskedIndex;
+  const countryAskedIndex = useSelector((state) => {
+    return state.countryAskedIndex;
   });
 
-  const currentQuestion = questionsAsked[questionAskedIndex]
-    ? questionsAsked[questionAskedIndex]
+  const currentCountry = countriesAsked[countryAskedIndex]
+    ? countriesAsked[countryAskedIndex]
     : {};
 
   useEffect(() => {
     const onLoad = async () => {
-      await dispatch(retrieveAllQuestions());
-      dispatch(getNextQuestion());
+      await dispatch(retrieveCountries());
+      dispatch(getNextCountry());
     };
     onLoad();
   }, []);
@@ -42,20 +44,24 @@ const App = () => {
     if (seeResults) {
       return (
         <div className="CountryQuiz">
-          <Results missedQuestions={missedQuestions} />
+          <Results missedCountries={missedCountries} />
+          <Footer />
         </div>
       );
     } else {
       return (
-        <div className="CountryQuiz">
-          <QuestionCard
-            cardTitle="Country Quiz"
-            countryInfo={currentQuestion}
-            currentQuestion={currentQuestion}
-            questionsAsked={questionsAsked}
-            questionAskedIndex={questionAskedIndex}
-          />
-        </div>
+        <Container>
+          <div className="CountryQuiz">
+            <QuestionCard
+              cardTitle="Country Quiz"
+              countryInfo={currentCountry}
+              currentCountry={currentCountry}
+              countriesAsked={countriesAsked}
+              countryAskedIndex={countryAskedIndex}
+            />
+          </div>
+          <Footer />
+        </Container>
       );
     }
   };

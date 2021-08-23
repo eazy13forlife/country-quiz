@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import AnswerChoice from "../AnswerChoice/AnswerChoice";
 import { ReactComponent as ReactLogo } from "../../images/undraw_adventure_4hum 1.svg";
 import {
-  getNextQuestion,
-  incrementQuestionIndex,
-  decrementQuestionIndex,
+  getNextCountry,
+  incrementCountryIndex,
+  decrementCountryIndex,
   viewResults,
 } from "../../actions/";
 
@@ -15,14 +15,14 @@ import "./QuestionCard.scss";
 const QuestionCard = ({
   cardTitle,
   countryInfo,
-  currentQuestion,
-  questionsAsked,
-  questionAskedIndex,
+  currentCountry,
+  countriesAsked,
+  countryAskedIndex,
 }) => {
   const dispatch = useDispatch();
 
   const totalQuestions = useSelector((state) => {
-    return state.allQuestions.length;
+    return state.allCountries.length;
   });
 
   let renderedAnswerChoices;
@@ -36,7 +36,7 @@ const QuestionCard = ({
             key={index}
             letter={letter}
             answerChoice={answerChoice}
-            currentQuestion={currentQuestion}
+            currentCountry={currentCountry}
           />
         );
       }
@@ -69,19 +69,19 @@ const QuestionCard = ({
   };
 
   const onNextClick = () => {
-    //if questionAskedIndex is less than length of our questionsAsked state then we will just increment to get to the next index. We wont get a new question yet
-    if (questionAskedIndex <= questionsAsked.length - 2) {
-      dispatch(incrementQuestionIndex());
+    //if countryAskedIndex is less than length of our questionsAsked state then we will just increment to get to the next index. We wont get a new question yet
+    if (countryAskedIndex <= countriesAsked.length - 2) {
+      dispatch(incrementCountryIndex());
     } else {
       //we only get a new question when we are on the last question in our
       // questionsAsked state
-      dispatch(getNextQuestion());
-      dispatch(incrementQuestionIndex());
+      dispatch(getNextCountry());
+      dispatch(incrementCountryIndex());
     }
   };
 
   const onPreviousClick = () => {
-    dispatch(decrementQuestionIndex());
+    dispatch(decrementCountryIndex());
   };
 
   const onReviewQuestionsClick = () => {
@@ -90,8 +90,8 @@ const QuestionCard = ({
 
   const renderButtons = () => {
     if (
-      currentQuestion.isCorrect === true &&
-      questionAskedIndex === totalQuestions - 1
+      currentCountry.isCorrect === true &&
+      countryAskedIndex === totalQuestions - 1
     ) {
       return (
         <div className="u-space-between">
@@ -103,7 +103,7 @@ const QuestionCard = ({
           </button>
         </div>
       );
-    } else if (currentQuestion.isCorrect) {
+    } else if (currentCountry.isCorrect) {
       return (
         <div className="u-space-between">
           <button className="button-primary" onClick={onPreviousClick}>
@@ -131,7 +131,7 @@ const QuestionCard = ({
       <ReactLogo className="QuestionCard__svg" />
       <div className="QuestionCard__contents">
         <p className="text u-margin-bottom-small">{`${
-          questionAskedIndex + 1
+          countryAskedIndex + 1
         }/${totalQuestions}`}</p>
         {getHeading()}
         {renderedAnswerChoices}

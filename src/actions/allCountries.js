@@ -5,24 +5,24 @@ import { swap, randomizeArray } from "../helperFunctions";
 
 //fetches a specific amount of country objects from our api, in order to be used
 //as the basis for our questions.
-const retrieveAllQuestions = () => {
+const retrieveCountries = () => {
   return async (dispatch) => {
     const allCountries = await axios.get(
       "https://restcountries.eu/rest/v2/all"
     );
-    const questions = [];
-    createQuestionsArray(questions, allCountries.data, 10);
+    const countries = [];
+    createCountriesArray(countries, allCountries.data, 10);
 
     dispatch({
-      type: types.RETRIEVE_ALL_QUESTIONS,
-      payload: questions,
+      type: types.RETRIEVE_COUNTRIES,
+      payload: countries,
     });
   };
 };
 
 ////////////////HELPER FUNCTIONS////////////////////
 
-const createQuestionsArray = (result, data, quantity) => {
+const createCountriesArray = (result, data, quantity) => {
   //if we want "quantity" random items, shuffle the last "quantity" items in our data first
   for (let i = data.length - 1; i > data.length - 1 - quantity; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
@@ -114,4 +114,4 @@ const addAnswerChoices = (result, data, quantity) => {
   }
 };
 */
-export { retrieveAllQuestions };
+export { retrieveCountries };
