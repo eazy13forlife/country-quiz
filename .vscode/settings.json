@@ -4,9 +4,17 @@
     "markdown"
   ],
   "emmet.preferences": {
+
   
   },
+  
+    "eslint.workingDirectories": ["./public", "./server", "./source"],
+
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
+  },
+  "editor.codeActionsOnSave": null,
+  "emmet.syntaxProfiles": {
+  
   }
 }
