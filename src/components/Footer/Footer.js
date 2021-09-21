@@ -1,6 +1,6 @@
 import React from "react";
 
-import { myName, githubUrl } from "../../myName";
+import { myName, githubUrl } from "../../myName.js";
 import "./Footer.scss";
 
 const Footer = () => {
