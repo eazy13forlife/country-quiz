@@ -30,10 +30,10 @@ const createCountriesArray = (result, data, quantity) => {
   for (let i = data.length - 1; i > endIndex; i--) {
     const country = data[i];
     result.push({
-      name: country.name.official,
+      name: country.name.common,
       capital: country.capital[0],
       flagImg: country.flags[0],
-      answerChoices: [country.name.official],
+      answerChoices: [country.name.common],
       indexInAllQuestions: i,
     });
 
@@ -54,7 +54,7 @@ const addAnswerChoices = (result, data, quantity) => {
   for (let i = dataCopy.length - 1; i > dataCopy.length - 1 - quantity; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
     swap(dataCopy, randomIndex, i);
-    result.push(dataCopy[i].name.official);
+    result.push(dataCopy[i].name.common);
   }
   randomizeArray(result);
 };
