@@ -20,7 +20,7 @@ const QuestionCard = ({
   countryAskedIndex,
 }) => {
   const dispatch = useDispatch();
-
+  console.log(countryInfo.flagImg);
   const totalQuestions = useSelector((state) => {
     return state.allCountries.length;
   });

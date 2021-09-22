@@ -5,6 +5,9 @@ const remainingQuestionsReducer = (state = [], action) => {
     //if retrieveAllQuestions is called, we are working with a new set of
     //countries,so we want remainingQuestions to equal this new set of questions
     case types.RETRIEVE_COUNTRIES:
+      if (action.payload === "error") {
+        return state;
+      }
       return action.payload;
     case types.REMOVE_COUNTRY: {
       const newState = [...state];
