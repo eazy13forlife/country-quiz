@@ -29,10 +29,12 @@ const createCountriesArray = (result, data, quantity) => {
   const endIndex = data.length - 1 - quantity;
   for (let i = data.length - 1; i > endIndex; i--) {
     const country = data[i];
+    console.log(country);
     result.push({
       name: country.name.common,
       capital: country.capital[0],
       flagImg: country.flags[0],
+      countryCode: country.cca2,
       answerChoices: [country.name.common],
       indexInAllQuestions: i,
     });

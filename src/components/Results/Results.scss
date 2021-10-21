@@ -1,5 +1,11 @@
 .Results {
   color: var(--tertiary-color);
+  &__image-container {
+    height: 8rem;
+  }
+  &__image {
+    transform: translatey(-2rem);
+  }
 }
 
 .Result {

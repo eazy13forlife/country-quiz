@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import ReactCountryFlag from "react-country-flag";
 
 import { ReactComponent as ReactLogo } from "../../images/undraw_adventure_4hum 1.svg";
 import "./Results.scss";
@@ -35,6 +36,7 @@ const Results = ({ missedCountries }) => {
   };
 
   const getQuestion = (country) => {
+    console.log(country);
     if (country.indexInAllQuestions % 2 === 0) {
       return (
         <h2 className="secondary-heading">
@@ -45,7 +47,13 @@ const Results = ({ missedCountries }) => {
       return (
         <h2 className="secondary-heading">
           <figure className="Results__image-container">
-            <img src={country.flagImg} alt="Flag" className="Results__image" />
+            <ReactCountryFlag
+              style={{
+                fontSize: "10rem",
+              }}
+              className="Results__image"
+              countryCode={country.countryCode}
+            ></ReactCountryFlag>
           </figure>
           <span>Which country does this flag belong to?</span>
         </h2>

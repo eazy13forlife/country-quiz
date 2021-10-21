@@ -5,7 +5,8 @@ import types from "./types";
 //the image in the question,I'm providing all the components needed to recreate
 //this question from scratch
 const addToMissedCountries = (currentQuestion) => {
-  const { name, capital, flagImg, indexInAllQuestions } = currentQuestion;
+  const { name, capital, flagImg, indexInAllQuestions, countryCode } =
+    currentQuestion;
 
   return {
     type: types.ADD_TO_MISSED_COUNTRIES,
@@ -14,6 +15,7 @@ const addToMissedCountries = (currentQuestion) => {
       capital,
       flagImg,
       indexInAllQuestions,
+      countryCode,
     },
   };
 };

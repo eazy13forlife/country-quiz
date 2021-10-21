@@ -1,4 +1,5 @@
 import React from "react";
+import ReactCountryFlag from "react-country-flag";
 import { useDispatch, useSelector } from "react-redux";
 
 import AnswerChoice from "../AnswerChoice/AnswerChoice";
@@ -20,7 +21,7 @@ const QuestionCard = ({
   countryAskedIndex,
 }) => {
   const dispatch = useDispatch();
-  console.log(countryInfo.flagImg);
+  console.log(currentCountry);
   const totalQuestions = useSelector((state) => {
     return state.allCountries.length;
   });
@@ -55,13 +56,15 @@ const QuestionCard = ({
     } else {
       return (
         <h2 className="secondary-heading  u-margin-bottom-medium u-text-align-center">
-          <figure className="QuestionCard__image-container u-margin-bottom-small">
-            <img
-              src={countryInfo.flagImg}
-              alt="Flag"
+          <div className="QuestionCard__image-container u-margin-bottom-small">
+            <ReactCountryFlag
+              style={{
+                fontSize: "15rem",
+              }}
               className="QuestionCard__image"
-            />
-          </figure>
+              countryCode={currentCountry.countryCode}
+            ></ReactCountryFlag>
+          </div>
           <span>Which country does this flag belong to?</span>
         </h2>
       );

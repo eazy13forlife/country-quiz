@@ -15,5 +15,6 @@
   "editor.codeActionsOnSave": null,
   "emmet.syntaxProfiles": {
   
-  }
+  },
+  "liveServer.settings.port": 5501
 }
