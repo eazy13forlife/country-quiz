@@ -92,7 +92,10 @@ const Results = ({ missedCountries }) => {
           </p>
         )}
         <div className="u-space-between">
-          <button className="button-secondary" onClick={onTryAgainClick}>
+          <button
+            className="button-secondary Results__try-again"
+            onClick={onTryAgainClick}
+          >
             Try Again
           </button>
           <button className="button-secondary" onClick={onTryNewQuestionsClick}>

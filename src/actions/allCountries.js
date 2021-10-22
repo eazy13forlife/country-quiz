@@ -1,4 +1,5 @@
 import types from "./types";
+import axios from "axios";
 import { swap, randomizeArray } from "../helperFunctions";
 import allCountries from "../allCountries.js";
 
@@ -16,7 +17,7 @@ const retrieveCountries = () => {
 
 ////////////////HELPER FUNCTIONS////////////////////
 
-const createCountriesArray = (result, data, quantity) => {
+const createCountriesArray = async (result, data, quantity) => {
   //if we want "quantity" random items, shuffle the last "quantity" items in our data first
   for (let i = data.length - 1; i > data.length - 1 - quantity; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
@@ -27,12 +28,20 @@ const createCountriesArray = (result, data, quantity) => {
   //since we will be manipulating data array via pop() for every iteration and
   // getting new length values, we save our initial endIndex
   const endIndex = data.length - 1 - quantity;
+
   for (let i = data.length - 1; i > endIndex; i--) {
     const country = data[i];
-    console.log(country);
+    let capital;
+
+    if (!country.capital) {
+      capital = "";
+    } else {
+      capital = country.capital[0];
+    }
+
     result.push({
       name: country.name.common,
-      capital: country.capital[0],
+      capital: capital,
       flagImg: country.flags[0],
       countryCode: country.cca2,
       answerChoices: [country.name.common],
