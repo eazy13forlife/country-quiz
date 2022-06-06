@@ -1,5 +1,4 @@
 import types from "./types";
-import axios from "axios";
 import { swap, randomizeArray } from "../helperFunctions";
 import allCountries from "../allCountries.js";
 
@@ -7,7 +6,7 @@ import allCountries from "../allCountries.js";
 //as the basis for our questions. *I need cors access so I saved API data*
 const retrieveCountries = () => {
   const countries = [];
-  createCountriesArray(countries, allCountries, 10);
+  createCountriesArray(countries, allCountries, 15);
 
   return {
     type: types.RETRIEVE_COUNTRIES,

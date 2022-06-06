@@ -36,7 +36,6 @@ const Results = ({ missedCountries }) => {
   };
 
   const getQuestion = (country) => {
-    console.log(country);
     if (country.indexInAllQuestions % 2 === 0) {
       return (
         <h2 className="secondary-heading">

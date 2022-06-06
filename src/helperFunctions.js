@@ -14,7 +14,7 @@ const swap = (array, index1, index2) => {
 const getRandomizedArray = (originalArray) => {
   const originalArrayCopy = [...originalArray];
   for (let i = originalArray.length - 1; i > 0; i--) {
-    const randomIndex = Math.floor(Math.random() * (i + 1));
+    const randomIndex = Math.floor(Math.random() * (i + 1)); // i is (max-min) and then we add 1 and since our min index is 0, max just becomes the largest index
     swap(originalArrayCopy, randomIndex, i);
   }
   return originalArrayCopy;
@@ -23,7 +23,7 @@ const getRandomizedArray = (originalArray) => {
 //shuffles an array in place
 const randomizeArray = (originalArray) => {
   for (let i = originalArray.length - 1; i > 0; i--) {
-    const randomIndex = Math.floor(Math.random() * (i + 1));
+    const randomIndex = Math.floor(Math.random() * (i + 1)); // i is (max-min) and then we add 1 and since our min index is 0, max just becomes the largest index
     swap(originalArray, randomIndex, i);
   }
 };

@@ -2,7 +2,6 @@ import types from "./types";
 
 import { getRandomIndex } from "../helperFunctions";
 import { removeCountry } from "./remainingCountries";
-import { incrementQuestionNumber } from "./countryAskedIndex";
 
 //gets a random country object from remainingQuestions state so this country
 // can be pushed into countriesAsked(which provides the order of countries asked

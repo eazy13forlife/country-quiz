@@ -21,7 +21,6 @@ const QuestionCard = ({
   countryAskedIndex,
 }) => {
   const dispatch = useDispatch();
-  console.log(currentCountry);
   const totalQuestions = useSelector((state) => {
     return state.allCountries.length;
   });
