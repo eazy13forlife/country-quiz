@@ -6,7 +6,7 @@ import allCountries from "../allCountries.js";
 //as the basis for our questions. *I need cors access so I saved API data*
 const retrieveCountries = () => {
   const countries = [];
-  createCountriesArray(countries, allCountries, 15);
+  createCountriesArray(countries, allCountries, 10);
 
   return {
     type: types.RETRIEVE_COUNTRIES,
