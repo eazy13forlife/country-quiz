@@ -1,5 +1,5 @@
 # Country Quiz Application
-Country Quiz is an application that tests your knowledge on countries and their flags.
+An application that tests your knowledge on countries and their flags.
 
 ## Live Url
 https://country-quiz-steel.vercel.app/
