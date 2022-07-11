@@ -16,7 +16,6 @@ const Footer = () => {
         >
           {myName}
         </a>{" "}
-        -devChallenges.io
       </p>
     </div>
   );
